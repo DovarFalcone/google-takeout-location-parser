@@ -1,0 +1,1 @@
+# google-takeout-location-parser
