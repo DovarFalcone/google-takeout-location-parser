@@ -1,6 +1,6 @@
 # Location History Parser
 
-This python script is used to parse Google Takeout Location History data into a csv file. The script can extract the `latitudeE7` and `longitudeE7` values from the raw location history data and the semantic location history data and store them in a csv file. The resulting csv file can be used in ArcGIS for spatial analysis and visualization.
+This python script is used to parse Google Takeout Location History data into a csv file. The script can extract the `timestamp`, `address`, `placeId`, `name`, `latitudeE7` and `longitudeE7` values from the raw location history data and the semantic location history data and store them in a csv file. The resulting csv file can be used in ArcGIS for spatial analysis and visualization.
 
 ## Requirements
 - Python 3.x
@@ -45,4 +45,4 @@ The raw location history data is found in the `Records.json` file and consists o
 The semantic location history data is found in the `Semantic Location History` folder and consists of more high-level and processed information compared to the raw location history data. This data is partitioned by year in different subfolders and by month in different JSON files. Inside each semantic JSON file we can find a single flat `timelineObjects` array.
 
 ## Limitations
-The script only extracts the `latitudeE7` and `longitudeE7` values from the raw location history data and the semantic location history data and stores them in a csv file. If you need to extract additional information, you may need to modify the script accordingly.
+The script only extracts the `timestamp`, `address`, `placeId`, `name`, `latitudeE7` and `longitudeE7` values from the raw location history data and the semantic location history data and stores them in a csv file. If you need to extract additional information, you may need to modify the script accordingly.
