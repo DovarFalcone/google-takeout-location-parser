@@ -1,33 +1,36 @@
 import os
-import json
 import csv
+import json
 
-def process_json(json_file):
-    with open(json_file, "r") as f:
-        data = json.load(f)
-        timeline_objects = data["timelineObjects"]
-        for obj in timeline_objects:
-            place_visit = obj.get("placeVisit")
-            if place_visit:
-                latitude = place_visit["location"]["latitudeE7"] / 10**7
-                longitude = place_visit["location"]["longitudeE7"] / 10**7
-                yield [latitude, longitude]
+def process_file(file_path, data_writer):
+    with open(file_path, encoding='utf-8-sig') as file:
+        data = json.load(file)
+        for obj in data['timelineObjects']:
+            if 'placeVisit' in obj:
+                try:
+                    name = obj['placeVisit']['location']['name']
+                except KeyError:
+                    name = obj['placeVisit']['location']['address']
+                lat = obj['placeVisit']['location']['latitudeE7'] / 10**7
+                lon = obj['placeVisit']['location']['longitudeE7'] / 10**7
+                timestamp = obj['placeVisit']['duration']['startTimestamp']
+                address = obj['placeVisit']['location']['address']
+                placeid = obj['placeVisit']['location']['placeId']
+                data_writer.writerow([timestamp, lat, lon, address, placeid, name])
 
 def main():
-    folder = "Takeout/Location History/Semantic Location History"
-    result = []
-    for year_folder in os.listdir(folder):
-        year_folder_path = os.path.join(folder, year_folder)
-        if os.path.isdir(year_folder_path):
-            for json_file in os.listdir(year_folder_path):
-                json_file_path = os.path.join(year_folder_path, json_file)
-                if json_file_path.endswith(".json"):
-                    result.extend(process_json(json_file_path))
+    root_dir = "Takeout/Location History/Semantic Location History"
+    output_file = "location_history.csv"
 
-    with open("location_history.csv", "w", newline="") as f:
-        writer = csv.writer(f)
-        writer.writerow(["latitude", "longitude"])
-        writer.writerows(result)
+    with open(output_file, 'w', newline='') as outfile:
+        data_writer = csv.writer(outfile)
+        data_writer.writerow(["timestamp", "latitude", "longitude", "address", "placeid", "name"])
+
+        for subdir, dirs, files in os.walk(root_dir):
+            for file in files:
+                if file.endswith(".json"):
+                    file_path = os.path.join(subdir, file)
+                    process_file(file_path, data_writer)
 
 if __name__ == "__main__":
     main()
