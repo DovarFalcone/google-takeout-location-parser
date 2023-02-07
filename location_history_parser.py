@@ -1,6 +1,7 @@
 import os
 import csv
 import json
+import datetime
 
 def process_file(file_path, data_writer):
     with open(file_path, encoding='utf-8-sig') as file:
@@ -16,7 +17,17 @@ def process_file(file_path, data_writer):
                 timestamp = obj['placeVisit']['duration']['startTimestamp']
                 address = obj['placeVisit']['location']['address']
                 placeid = obj['placeVisit']['location']['placeId']
-                data_writer.writerow([timestamp, lat, lon, address, placeid, name])
+                
+                # Convert the timestamp to a datetime object
+                try:
+                    datetime_obj = datetime.datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%SZ')
+                except ValueError:
+                    datetime_obj = datetime.datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%S.%fZ')
+                # Convert the datetime object to Unix epoch time
+                epoch_time = int(datetime_obj.timestamp())
+                
+                # Write the data to the CSV file
+                data_writer.writerow([timestamp, lat, lon, address, placeid, name, epoch_time])
 
 def main():
     root_dir = "Takeout/Location History/Semantic Location History"
@@ -24,7 +35,7 @@ def main():
 
     with open(output_file, 'w', newline='') as outfile:
         data_writer = csv.writer(outfile)
-        data_writer.writerow(["timestamp", "latitude", "longitude", "address", "placeid", "name"])
+        data_writer.writerow(["timestamp", "latitude", "longitude", "address", "placeid", "name", "epoch_time"])
 
         for subdir, dirs, files in os.walk(root_dir):
             for file in files:
