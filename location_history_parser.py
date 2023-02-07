@@ -8,6 +8,7 @@ def process_file(file_path, data_writer):
         data = json.load(file)
         for obj in data['timelineObjects']:
             if 'placeVisit' in obj:
+                timestamp = obj['placeVisit']['duration']['startTimestamp']
                 try:
                     name = obj['placeVisit']['location']['name']
                 except KeyError:
@@ -24,7 +25,6 @@ def process_file(file_path, data_writer):
                 epoch_time = int(datetime_obj.timestamp())
                 lat = obj['placeVisit']['location']['latitudeE7'] / 10**7
                 lon = obj['placeVisit']['location']['longitudeE7'] / 10**7
-                timestamp = obj['placeVisit']['duration']['startTimestamp']
                 address = obj['placeVisit']['location']['address']
                 placeid = obj['placeVisit']['location']['placeId']
                 # Write the data to the CSV file
