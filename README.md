@@ -12,7 +12,7 @@ The resulting csv files can be used in ArcGIS for spatial analysis and visualiza
 - Python 3.x
 
 ## Usage
-1. Download and extract your Location History data from Google Takeout. Google will send you a link to download a `.zip` file. Unzip the file into a new directory.
+1. Download and extract your Location History data from [Google Takeout](https://takeout.google.com/). Google will send you a link to download a `.zip` file. Unzip the file into a new directory.
 2. Save the python scripts in the same folder that you extracted the Takeouts folder.
 3. Open a terminal/command prompt and navigate to the location of the script and the data.
 4. Run the script using the command `python semantic_location_parser.py`.
