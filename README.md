@@ -6,7 +6,7 @@ Each file scans through the Takeouts directory and parses the Google location da
 
 The resulting csv files can be used in ArcGIS for spatial analysis and visualization. If you want to see your data visually fast, then convert the csv to a macro enabled `.xlms` file and use Excel's mapping tool.
 
-![Fine Location data using records_location_parser.py](https://cdn.discordapp.com/attachments/1038892486225043516/1073077396787437730/image.png)
+![Fine Location data using records_location_parser.py](/assets/images/airport.png)
 
 ## Requirements
 - Python 3.x
