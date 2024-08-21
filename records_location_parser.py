@@ -44,7 +44,7 @@ def process_file(file_path, data_writer):
         
 
 def main():
-    root_dir = "Takeout\Location History"
+    root_dir = r".\Takeout\Location History (Timeline)"
     output_file = "location_history.csv"
 
     with open(output_file, 'w', newline='') as outfile:
