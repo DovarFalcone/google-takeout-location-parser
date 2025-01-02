@@ -2,6 +2,8 @@ import os
 import csv
 import json
 import datetime
+from pathlib import Path
+
 
 def process_file(file_path, data_writer):
     print(f"Reading file: {file_path}")  # Debugging line
@@ -34,7 +36,7 @@ def process_file(file_path, data_writer):
         print(f"Error decoding JSON from file {file_path}: {e}")  # Debugging line
 
 def main():
-    root_dir = r".\Takeout\Location History (Timeline)\Semantic Location History"
+    root_dir = Path(".") / "Takeout" / "Location History (Timeline)" / "Semantic Location History"
     output_file = "semantic_location_history.csv"
 
     if not os.path.exists(root_dir):
