@@ -11,6 +11,8 @@ While the provided scripts cover common use cases, they can be easily modified t
 
 ## Streamlit App UPDATE
 
+Try it yourself, hosted via streamlit. [Live Site](https://takeout-location-parser.streamlit.app/)
+
 This Streamlit application (app.py) allows users to process and visualize their Google Takeout location history data. Users can upload a ZIP file containing their location history JSON files, and the app will extract, process, and display the data in an interactive format. The processed data can be downloaded as a CSV file for further analysis. You must have the Semantic Location History file present in order for this to run successfully.
 
 Run the Streamlit app
