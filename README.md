@@ -1,5 +1,29 @@
 # Location History Parser
 
+The Location History Parser offers a straightforward and efficient solution for anyone looking to analyze their Google Takeout location history data.
+
+Downloading processed data as a CSV file opens up various possibilities for deeper analysis. Users can leverage tools like Excel, ArcGIS, or any other data analysis software to explore their data further, perform spatial analysis, and create custom visualizations.
+
+While the provided scripts cover common use cases, they can be easily modified to extract additional data points or to suit specific analytical needs. This flexibility makes the tool suitable for both casual users and data enthusiasts.
+
+## Requirements
+- Python 3.x
+
+## Streamlit App UPDATE
+
+This Streamlit application (app.py) allows users to process and visualize their Google Takeout location history data. Users can upload a ZIP file containing their location history JSON files, and the app will extract, process, and display the data in an interactive format. The processed data can be downloaded as a CSV file for further analysis. You must have the Semantic Location History file present in order for this to run successfully.
+
+Run the Streamlit app
+
+1. `pip install -r requirements.txt`
+2. `streamlit run app.py`
+
+This will launch a web-based UI where you can upload your Google Takeout location history ZIP file and interact with the processed data.
+
+![Fine Location data using app.py](/assets/images/streamlit.png)
+
+## Manual Scripts
+
 There are three scripts in this repo, `semantic_location_parser.py`, `records_location_parser.py`, and `full_location_history_parser.py`.
 
 Each file scans through the Takeouts directory and parses the Google location data.
@@ -7,9 +31,6 @@ Each file scans through the Takeouts directory and parses the Google location da
 The resulting csv files can be used in ArcGIS for spatial analysis and visualization. If you want to see your data visually fast, then convert the csv to a macro enabled `.xlms` file and use Excel's mapping tool.
 
 ![Fine Location data using records_location_parser.py](/assets/images/airport.png)
-
-## Requirements
-- Python 3.x
 
 ## Usage
 1. Download and extract your Location History data from [Google Takeout](https://takeout.google.com/). Google will send you a link to download a `.zip` file. Unzip the file into a new directory.
